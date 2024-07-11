@@ -1,12 +1,9 @@
-import {
-  ArrowRight,
-  UserRoundPlus,
-} from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { ConfirmTripModal } from "./confirm-trip-modal";
 import { DestinationAndDateSteps } from "./steps/destination-and-date-steps";
+import { InviteGuestsSteps } from "./steps/invite-guests-steps";
 
 export function CreateTripPage() {
   const navigate = useNavigate();
@@ -81,7 +78,11 @@ export function CreateTripPage() {
             openGuestsInput={openGuestsInput}
           />
           {IsGuestsInputOpen && (
-           
+            <InviteGuestsSteps
+              emailsToInvite={emailsToInvite}
+              openConfirmTipModal={openConfirmTipModal}
+              openGuestsModal={openGuestsModal}
+            />
           )}
         </div>
         <p className="text-sm text-zinc-500">
