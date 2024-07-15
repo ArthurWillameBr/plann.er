@@ -10,6 +10,8 @@ interface DestinationAndDateStepsProps {
   openGuestsInput: () => void;
   closeGuestsInput: () => void;
   setDestination: (destination: string) => void;
+  setEventStartAndEndDates: (dates: DateRange | undefined) => void;
+  eventStartAndEndDates: DateRange | undefined;
 }
 
 export function DestinationAndDateSteps({
@@ -17,11 +19,11 @@ export function DestinationAndDateSteps({
   closeGuestsInput,
   openGuestsInput,
   setDestination,
+  setEventStartAndEndDates,
+  eventStartAndEndDates
 }: DestinationAndDateStepsProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [eventStartAndEndDate, setEventStartAndEndDate] = useState<
-    DateRange | undefined
-  >();
+  
 
   function openDatePicker() {
     return setIsDatePickerOpen(true);
@@ -32,8 +34,8 @@ export function DestinationAndDateSteps({
   }
 
   const displayedDate =
-    eventStartAndEndDate && eventStartAndEndDate.from && eventStartAndEndDate.to
-      ? format(eventStartAndEndDate.from,  "d' de 'LLL").concat(" até ").concat(format(eventStartAndEndDate.to, "d' de 'LLL"))
+    eventStartAndEndDates && eventStartAndEndDates.from && eventStartAndEndDates.to
+      ? format(eventStartAndEndDates.from,  "d' de 'LLL").concat(" até ").concat(format(eventStartAndEndDates.to, "d' de 'LLL"))
       : null;
 
   return (
@@ -72,8 +74,8 @@ export function DestinationAndDateSteps({
             </div>
             <DayPicker
               mode="range"
-              selected={eventStartAndEndDate}
-              onSelect={setEventStartAndEndDate}
+              selected={eventStartAndEndDates}
+              onSelect={setEventStartAndEndDates}
             />
           </div>
         </div>
