@@ -7,13 +7,14 @@ import { InviteGuestsSteps } from "./steps/invite-guests-steps";
 import { DateRange } from "react-day-picker";
 import { api } from "@/lib/axios";
 
+
 export function CreateTripPage() {
   const navigate = useNavigate();
 
   const [IsGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
   const [isConfimTipModalOpen, setIsConfimTipModalOpen] = useState(false);
-  const [emailsToInvite, setEmailsToInvite] = useState(["arthur@gmail.com"]);
+  const [emailsToInvite, setEmailsToInvite] = useState([]);
 
   const [destination, setDestination] = useState("")
   const [ownerName, setOwnerName] = useState("")
@@ -50,11 +51,11 @@ export function CreateTripPage() {
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email") as string;
 
-    if (emailsToInvite.includes(email)) {
+    if (emailsToInvite.includes(email as never)) {
       return;
     }
-
-    setEmailsToInvite([...emailsToInvite, email]);
+    
+    setEmailsToInvite([...emailsToInvite, email as never]);
 
     event.currentTarget.reset();
   }
