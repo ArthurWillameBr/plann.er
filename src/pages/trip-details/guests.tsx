@@ -1,7 +1,7 @@
 import { CheckCircle, CircleDashed, UserCog } from "lucide-react";
-import { Button } from "../../components/button";
+import { Button } from "@/components/button";
 import { useEffect, useState } from "react";
-import { api } from "../../lib/axios";
+import { api } from "@/lib/axios";
 import { useParams } from "react-router-dom";
 
 interface Participant {
