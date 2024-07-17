@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { api } from "@/lib/axios";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import { UpdateTripModal } from "./update-trip-modal";
 
 export interface Trip {
   id: string
@@ -16,6 +17,16 @@ export interface Trip {
 
 export function DestinationAndDateHeader() {
   const [trip, setTrip] = useState<Trip | undefined>()
+  const [isUpdateTripModalOpen, setIsUpdateTripModalOpen] = useState(false)
+
+  function openUpdateTripModal() {
+    setIsUpdateTripModalOpen(true)
+  }
+  
+  function closeUpdateTripModal() {
+    setIsUpdateTripModalOpen(false)
+  }
+
   const { tripId } = useParams()
   
   useEffect(() => {
@@ -37,11 +48,14 @@ export function DestinationAndDateHeader() {
           <span className="text-lg text-zinc-100">{displayedDate}</span>
         </div>
         <div className="w-px h-6 bg-zinc-800" />
-        <Button variant="secondary">
+        <Button onClick={openUpdateTripModal} variant="secondary">
           <Settings2 className="size-5 text-zinc-400" />
-          Configurações
+          Atualizar
         </Button>
       </div>
+      {isUpdateTripModalOpen && (
+        <UpdateTripModal closeUpdateTripModal={closeUpdateTripModal}/>
+      )}
     </div>
   );
 }
