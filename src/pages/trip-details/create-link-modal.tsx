@@ -58,7 +58,7 @@ export function CreateLinkModal({closeLinkModal}: CreateLinkModal ) {
                 <input
                   type="url"
                   name="url"
-                  placeholder="Url do site"
+                  placeholder="Url"
                   className="bg-transparent text-lg placeholder:zinc-400 w-full outline-none [color-scheme:dark] "
                 />
               </div>
