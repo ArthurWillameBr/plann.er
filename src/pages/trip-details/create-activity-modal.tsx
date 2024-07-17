@@ -3,6 +3,7 @@ import { Button } from "@/components/button";
 import { FormEvent } from "react";
 import { api } from "@/lib/axios";
 import { useParams } from "react-router-dom";
+import { Input } from "@/components/input";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
@@ -11,7 +12,6 @@ interface CreateActivityModalProps {
 export function CreateActivityModal({
   closeCreateActivityModal,
 }: CreateActivityModalProps) {
-
   const { tripId } = useParams();
 
   async function createActivity(event: FormEvent<HTMLFormElement>) {
@@ -22,7 +22,7 @@ export function CreateActivityModal({
     const title = data.get("title")?.toString();
 
     const occurs_at = data.get("occurs_at")?.toString();
-    
+
     await api.post(`/trips/${tripId}/activities`, {
       occurs_at,
       title,
@@ -48,7 +48,7 @@ export function CreateActivityModal({
         <form onSubmit={createActivity} className="space-y-3">
           <div className="flex items-center gap-2 h-14 px-5 bg-zinc-950 border border-zinc-800 rounded-lg">
             <Tag className="size-5 text-zinc-400" />
-            <input
+            <Input
               name="title"
               placeholder="Qual a atividade"
               className="bg-transparent text-lg placeholder:zinc-400 w-full outline-none "
@@ -57,11 +57,11 @@ export function CreateActivityModal({
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 h-14 flex-1 px-5 bg-zinc-950 border border-zinc-800 rounded-lg">
               <Calendar className="size-5 text-zinc-400" />
-              <input
+              <Input
                 type="datetime-local"
                 name="occurs_at"
                 placeholder="Data e horário da atividade"
-                className="bg-transparent text-lg placeholder:zinc-400 w-full outline-none [color-scheme:dark] "
+                className="[color-scheme:dark]"
               />
             </div>
           </div>

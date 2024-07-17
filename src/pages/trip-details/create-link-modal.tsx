@@ -3,6 +3,7 @@ import { Button } from "@/components/button"
 import { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "@/lib/axios";
+import { Input } from "@/components/input";
 
 interface CreateLinkModal {
     closeLinkModal: () => void
@@ -45,21 +46,20 @@ export function CreateLinkModal({closeLinkModal}: CreateLinkModal ) {
           <form onSubmit={createLink} className="space-y-3">
             <div className="flex items-center gap-2 h-14 px-5 bg-zinc-950 border border-zinc-800 rounded-lg">
               <Tag className="size-5 text-zinc-400" />
-              <input
+              <Input
                 type="text"
                 name="title"
                 placeholder="Titulo do link"
-                className="bg-transparent text-lg placeholder:zinc-400 w-full outline-none "
               />
             </div>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-2 h-14 flex-1 px-5 bg-zinc-950 border border-zinc-800 rounded-lg">
                 <LucideLink className="size-5 text-zinc-400" />
-                <input
+                <Input
                   type="url"
                   name="url"
                   placeholder="Url"
-                  className="bg-transparent text-lg placeholder:zinc-400 w-full outline-none [color-scheme:dark] "
+                  className="[color-scheme:dark] "
                 />
               </div>
             </div>
